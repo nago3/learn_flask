@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>{{ data.title }}</h1>
+  <p>{{ data.description }}</p>
+
+  <section>
+    <h2>articles</h2>
+    <ul>
+      {% for article in data.articles %}
+      {% if article == 'title3' %}
+      <li>{{ article }}</li>
+      {% elif article == 'title2' %}
+      <li>タイトル2</li>
+      {% else %}
+      <li>{{ "else title" }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+</body>
+
+</html>
