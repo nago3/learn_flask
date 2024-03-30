@@ -4,5 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-HELLO = os.getenv('HELLO')
+HOST = os.getenv('HOST')
+PORT = os.getenv('PORT')
 DEBUG = os.getenv('DEBUG')
