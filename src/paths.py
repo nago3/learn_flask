@@ -30,3 +30,13 @@ def index():
         # ]
     }
     return render_template('/views/index.html', data=data)
+
+@app.route('/about')
+def about():
+    """This is the about route
+    """
+    about_data = {
+        'title': 'About',
+        'description': 'This is the about page'
+    }
+    return render_template('/views/about.html', data=about_data)
