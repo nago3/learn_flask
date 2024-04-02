@@ -1,0 +1,11 @@
+{% extends "meta.html" %}
+
+{% block content %}
+<div>
+  <h2>Form</h2>
+  <form action="/form" method="POST">
+    <input class="input" name="name"></input>
+    <button class="submit" type="submit">送信</button>
+  </form>
+</div>
+{% endblock %}

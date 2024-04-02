@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 
 from src import app
 
@@ -40,3 +40,18 @@ def about():
         'description': 'This is the about page'
     }
     return render_template('/views/about.html', data=about_data)
+
+@app.route('/form')
+def form():
+    """This is form route
+    """
+    return render_template('/views/form.html')
+
+@app.route('/form', methods=['POST'])
+def form_post():
+    """This is form POST Method route
+    """
+    req = request.form['name']
+
+    print('Name:', req)
+    return f'Form POST Method: {req}'

@@ -1,3 +1,24 @@
 li {
   list-style-type: decimal;
 }
+
+.input {
+  width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+  resize: vertical;
+  border: 1px solid #ccc;
+}
+
+.submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
