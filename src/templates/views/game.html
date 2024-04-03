@@ -1,0 +1,17 @@
+{% extends "meta.html" %}
+
+{% block content %}
+<div>
+  <h2>Game</h2>
+  <p>Rock-Paper-Scissors:</p>
+  <form action="/game" method="POST">
+    <input id="rock" class="radio" type="radio" name="hand" value="0" checked />
+    <label for="rock">Rock</label>
+    <input id="paper" class="radio" type="radio" name="hand" value="1" />
+    <label for="paper">Paper</label>
+    <input id="scissors" class="radio" type="radio" name="hand" value="2" />
+    <label for="scissors">Scissors</label>
+    <button type="submit">送&nbsp;信</button>
+  </form>
+</div>
+{% endblock %}
