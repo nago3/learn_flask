@@ -1,3 +1,5 @@
+import random
+
 from flask import render_template, request
 
 from src import app
@@ -11,23 +13,6 @@ def index():
         'title': 'Flask App',
         'description': 'This is a simple flask app',
         'articles': [ "title1", "title2", "title3" ],
-        # 'articles': [
-        #     {
-        #         'id': 1,
-        #         'title': 'Article 1',
-        #         'body': 'This is the content of article 1'
-        #     },
-        #     {
-        #         'id': 2,
-        #         'title': 'Article 2',
-        #         'body': 'This is the content of article 2'
-        #     },
-        #     {
-        #         'id': 3,
-        #         'title': 'Article 3',
-        #         'body': 'This is the content of article 3'
-        #     },
-        # ]
     }
     return render_template('/views/index.html', data=data)
 
@@ -41,17 +26,56 @@ def about():
     }
     return render_template('/views/about.html', data=about_data)
 
-@app.route('/form')
+@app.route('/form', methods=['GET', 'POST'])
 def form():
     """This is form route
+
+    description: This route is used to render the form.html file
+        - GET
+        - POST
     """
+    if request.method == 'GET':
+        return render_template('/views/form.html')
+
+    if request.method == 'POST':
+        req = request.form['name']
+        print('Name:', req)
+        return f'Form POST Method: {req}'
+
     return render_template('/views/form.html')
 
-@app.route('/form', methods=['POST'])
-def form_post():
-    """This is form POST Method route
-    """
-    req = request.form['name']
+@app.route('/game', methods=['GET', 'POST'])
+def game():
+    """This is the game route
 
-    print('Name:', req)
-    return f'Form POST Method: {req}'
+    description: This route is used to Rock-Paper-Scissors game
+        - GET
+            - choose your hand
+                - rock: 0
+                - paper: 1
+                - scissors: 2
+        - POST
+    """
+    if request.method == 'GET':
+        return render_template('/views/game.html')
+
+    if request.method == 'POST':
+        user_hand = int(request.form['hand'])
+        hand_type = {
+            0: 'rock',
+            1: 'paper',
+            2: 'scissors'
+        }
+        computer_hand = random.randint(0, 2)
+
+        result = (user_hand - computer_hand) % 3
+        if result == 0:
+            result_str = 'Draw'
+        elif result == 1:
+            result_str = 'Win'
+        else:
+            result_str = 'Lose'
+
+        return f'User: {hand_type[user_hand]},<br />\
+                Computer: {hand_type[computer_hand]},<br />\
+                Result: {result_str}'
