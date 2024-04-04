@@ -76,6 +76,14 @@ def game():
         else:
             result_str = 'Lose'
 
-        return f'User: {hand_type[user_hand]},<br />\
-                Computer: {hand_type[computer_hand]},<br />\
-                Result: {result_str}'
+        # return f'User: {hand_type[user_hand]},<br />\
+        #         Computer: {hand_type[computer_hand]},<br />\
+        #         Result: {result_str}'
+
+        result_data = {
+            'user': hand_type[user_hand],
+            'computer': hand_type[computer_hand],
+            'result': result_str
+        }
+
+        return render_template('/views/game_result.html', data=result_data)
