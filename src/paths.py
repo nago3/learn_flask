@@ -26,7 +26,8 @@ def about():
     }
     return render_template('/views/about.html', data=about_data)
 
-@app.route('/form', methods=['GET', 'POST'])
+@app.get('/form')
+@app.post('/form')
 def form():
     """This is form route
 
@@ -44,7 +45,8 @@ def form():
 
     return render_template('/views/form.html')
 
-@app.route('/game', methods=['GET', 'POST'])
+@app.get('/game')
+@app.post('/game')
 def game():
     """This is the game route
 
@@ -75,11 +77,6 @@ def game():
             result_str = 'Win'
         else:
             result_str = 'Lose'
-
-        # return f'User: {hand_type[user_hand]},<br />\
-        #         Computer: {hand_type[computer_hand]},<br />\
-        #         Result: {result_str}'
-
         result_data = {
             'user': hand_type[user_hand],
             'computer': hand_type[computer_hand],
