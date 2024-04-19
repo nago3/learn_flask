@@ -40,3 +40,28 @@ $ flask run
 
 - [Flask Documentation](https://flask.palletsprojects.com/en/3.0.x/)
 
+### DB
+
+Use SQLite3 with Flask-SQLAlchemy
+
+```sh
+$ pyp3 install Flask-SQLAlchemy
+```
+
+```py
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    # Return a representation of the object
+    def __repr__(self):
+        return '<User %r>' % self.username
+```
