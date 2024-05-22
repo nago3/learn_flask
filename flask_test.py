@@ -1,5 +1,5 @@
 """flask sample app"""
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -19,6 +19,10 @@ def index3(id):
 def index4():
     return 'GET or POST'
 
+@app.route('/req')
+def req():
+    # Access to... "http://127.0.0.1:8080/req?param=test"
+    return 'メソッド：' + request.method + 'パラメータ：' + request.args.get('param')
 
 if __name__ == '__main__':
     app.debug = True
