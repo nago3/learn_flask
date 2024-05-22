@@ -1,5 +1,5 @@
 """flask sample app"""
-from flask import Flask, request, redirect, jsonify
+from flask import Flask, request, redirect, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -37,6 +37,14 @@ def json():
             address='Tokyo'
         )
     )
+
+@app.route('/view')
+def view():
+    return render_template(
+            'index.html',
+            title='Flask Test',
+            members=['Taro', 'Jiro', 'Saburo']
+        )
 
 if __name__ == '__main__':
     app.debug = True
