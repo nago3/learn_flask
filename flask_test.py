@@ -1,5 +1,5 @@
 """flask sample app"""
-from flask import Flask, request
+from flask import Flask, request, redirect, jsonify
 
 app = Flask(__name__)
 
@@ -23,6 +23,20 @@ def index4():
 def req():
     # Access to... "http://127.0.0.1:8080/req?param=test"
     return 'メソッド：' + request.method + 'パラメータ：' + request.args.get('param')
+
+@app.route('/red')
+def red():
+    return redirect('/json')
+
+@app.route('/json')
+def json():
+    return jsonify(
+        dict(
+            name='Taro',
+            age=20,
+            address='Tokyo'
+        )
+    )
 
 if __name__ == '__main__':
     app.debug = True
